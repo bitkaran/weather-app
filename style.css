@@ -217,7 +217,7 @@ body {
   }
 
   .details {
-    flex-direction: column; 
+    flex-direction: row; 
   }
 
   .humidity,
@@ -248,3 +248,4 @@ body {
     font-size: 36px;
   }
 }
+
