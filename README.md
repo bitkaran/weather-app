@@ -38,7 +38,7 @@ Perfect for:
 ## 🔥 Live Demo
 
 🌍 **Live Website:**
-[https://your-weather-app.netlify.app](https://your-weather-app.netlify.app)
+[https://weather-app.netlify.app](https://weather-app.netlify.app)
 
 
 ---
@@ -109,7 +109,7 @@ weather-app/
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/weather-app.git
+git clone https://github.com/bitkaran/weather-app.git
 cd weather-app
 ```
 
@@ -127,7 +127,7 @@ cd weather-app
 This project uses the **OpenWeather API**.
 
 ```js
-const apiKey = "YOUR_API_KEY_HERE";
+const apiKey = "092ae207c7e0ce836703f50719d6440a";
 ```
 
 ### ⚠️ Note
@@ -174,7 +174,7 @@ This project is open-source and free to use for:
 
 * 💻 Frontend Developer
 * 📧 Email: [karan.devmail@gmail.com](mailto:karan.devmail@gmail.com)
-* 🔗 LinkedIn: [https://www.linkedin.com/in/krn-shekhawat/](https://www.linkedin.com/in/krn-shekhawat/)
+* 🔗 LinkedIn: [https://www.linkedin.com/in/krn-shekhawat/](https://www.linkedin.com/in/bitkaran/)
 * 🐙 GitHub: [https://github.com/bitkaran](https://github.com/bitkaran)
 
 ---
