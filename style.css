@@ -54,7 +54,7 @@ body {
 
 .theme-toggle {
   position: absolute;
-  top: -22px;
+  top: -25px;
   right: 6px;
 
   width: 38px;
@@ -248,4 +248,5 @@ body {
     font-size: 36px;
   }
 }
+
 
