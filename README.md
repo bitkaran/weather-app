@@ -88,6 +88,7 @@ Perfect for:
 weather-app/
 ├── index.html
 ├── style.css
+├── script.js
 ├── images/
 │   ├── clear.png
 │   ├── clouds.png
