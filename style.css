@@ -96,6 +96,8 @@ body {
 .search button {
   height: 52px;
   width: 52px;
+  min-width: 52px;
+  min-height: 52px;
   border-radius: 50%;
   border: none;
   background: #ffffff;
@@ -104,6 +106,7 @@ body {
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
 .search button:hover {
@@ -197,6 +200,9 @@ body {
   .search button {
     height: 44px;
     width: 44px;
+    min-height: 44px;
+    min-width: 44px;
+    flex-shrink: 0;
   }
 
   .weather-icon {
@@ -245,5 +251,6 @@ body {
     font-size: 36px;
   }
 }
+
 
 
