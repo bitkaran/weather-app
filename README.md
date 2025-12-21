@@ -1,4 +1,4 @@
-# 🌦 Weather App
+# 🌦 SkyCast Weather App
 
 <p align="center">
   <b>
@@ -38,7 +38,7 @@ Perfect for:
 ## 🔥 Live Demo
 
 🌍 **Live Website:**
-[https://weather-app.netlify.app](https://weather-app.netlify.app)
+[https://skycast-weatherr.netlify.app](https://skycast-weatherr.netlify.app)
 
 
 ---
