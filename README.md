@@ -174,7 +174,7 @@ This project is open-source and free to use for:
 
 * 💻 Frontend Developer
 * 📧 Email: [karan.devmail@gmail.com](mailto:karan.devmail@gmail.com)
-* 🔗 LinkedIn: [https://www.linkedin.com/in/krn-shekhawat/](https://www.linkedin.com/in/bitkaran/)
+* 🔗 LinkedIn: [https://www.linkedin.com/in/bitkaran/](https://www.linkedin.com/in/bitkaran/)
 * 🐙 GitHub: [https://github.com/bitkaran](https://github.com/bitkaran)
 
 ---
