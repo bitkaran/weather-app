@@ -1,4 +1,4 @@
-# 🌦 SkyCast Weather App
+<h1 align="center">🌦 SkyCast Weather App</h1>
 
 <p align="center">
   <b>
