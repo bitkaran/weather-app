@@ -33,13 +33,6 @@ Perfect for:
 * 🎓 Learning JavaScript & APIs
 * 🌐 Hosting on Netlify / GitHub Pages
 
----
-
-## 🔥 Live Demo
-
-🌍 **Live Website:**
-[https://skycast-weatherr.netlify.app](https://skycast-weatherr.netlify.app)
-
 
 ---
 
