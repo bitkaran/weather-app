@@ -12,6 +12,7 @@ const toggle = document.querySelector(".theme-toggle");
             );
         });
 
+
         if (localStorage.getItem("theme") === "light") {
             document.body.classList.add("light");
             toggle.textContent = "☀️";
