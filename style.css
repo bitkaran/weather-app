@@ -290,6 +290,7 @@ body {
   .search input {
     height: 46px;
     font-size: 14px;
+    width: 100px
   }
 
   .search button {
@@ -313,6 +314,7 @@ body {
     max-width: 520px;
   }
 }
+
 
 
 
