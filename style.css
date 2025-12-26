@@ -279,7 +279,9 @@ body {
 
 @media (max-width: 420px) {
   .theme-toggle{
-    right: -29px;
+    position: absolute;
+    top: 50%;
+    right: -49px;
   }
   .card {
     padding: 20px 16px 24px;
@@ -311,4 +313,5 @@ body {
     max-width: 520px;
   }
 }
+
 
