@@ -1,96 +1,201 @@
 const toggle = document.querySelector(".theme-toggle");
 
-        toggle.addEventListener("click", () => {
-            document.body.classList.toggle("light");
+toggle.addEventListener("click", () => {
+  document.body.classList.toggle("light");
+  toggle.textContent = document.body.classList.contains("light") ? "☀️" : "🌙";
+  localStorage.setItem(
+    "theme",
+    document.body.classList.contains("light") ? "light" : "dark"
+  );
+});
 
-            toggle.textContent =
-                document.body.classList.contains("light") ? "☀️" : "🌙";
+if (localStorage.getItem("theme") === "light") {
+  document.body.classList.add("light");
+  toggle.textContent = "☀️";
+}
 
-            localStorage.setItem(
-                "theme",
-                document.body.classList.contains("light") ? "light" : "dark"
-            );
-        });
+const apiKey = "092ae207c7e0ce836703f50719d6440a";
+const apiUrl =
+  "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
 
+const searchBox = document.querySelector(".search input");
+const searchBtn = document.querySelector(".search button");
+const weatherIcon = document.querySelector(".weather-icon");
+const weatherBox = document.querySelector(".weather");
+const errorBox = document.querySelector(".error");
+const card = document.querySelector(".card");
 
-        if (localStorage.getItem("theme") === "light") {
-            document.body.classList.add("light");
-            toggle.textContent = "☀️";
-        }
+function showLoader() {
+  card.classList.add("loading");
+  weatherBox.style.display = "none";
+  errorBox.style.display = "none";
+}
 
-        const apiKey = "092ae207c7e0ce836703f50719d6440a";
-        const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
+function hideLoader() {
+  card.classList.remove("loading");
+}
 
-        const searchBox = document.querySelector(".search input");
-        const searchBtn = document.querySelector(".search button");
-        const weatherIcon = document.querySelector(".weather-icon");
+/* NUMBER ANIMATION */
+function animateNumber(el, start, end, suffix = "") {
+  let current = start;
+  const step = end > start ? 1 : -1;
 
-        async function checkWeather(city) {
-            const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+  const interval = setInterval(() => {
+    current += step;
+    el.innerHTML = current + suffix;
+    if (current === end) clearInterval(interval);
+  }, 15);
+}
 
-            if (response.status === 404) {
-                document.querySelector(".error").style.display = "block";
-                document.querySelector(".weather").style.display = "none";
-                return;
-            }
+async function checkWeather(city) {
+  city = city.trim();
 
-            const data = await response.json();
-            updateUI(data);
-        }
+  if (!city) return;
 
-        function updateUI(data) {
-            document.querySelector(".city").innerHTML = data.name;
-            document.querySelector(".temp").innerHTML =
-                Math.round(data.main.temp) + "°C";
-            document.querySelector(".humidity").innerHTML =
-                data.main.humidity + "%";
-            document.querySelector(".wind").innerHTML =
-                data.wind.speed + " km/h";
+  showLoader();
 
-            setWeatherAnimation(data.weather[0].main);
+  try {
+    const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
 
-            document.querySelector(".weather").style.display = "block";
-            document.querySelector(".error").style.display = "none";
-        }
+    if (!response.ok) {
+      handleError(response.status);
+      hideLoader();
+      return;
+    }
 
-        function setWeatherAnimation(condition) {
-            if (condition === "Clouds") {
-                weatherIcon.src = "images/clouds.png";
-            } else if (condition === "Clear") {
-                weatherIcon.src = "images/clear.png";
-            } else if (condition === "Rain") {
-                weatherIcon.src = "images/rain.png";
-            } else if (condition === "Drizzle") {
-                weatherIcon.src = "images/drizzle.png";
-            } else if (condition === "Mist") {
-                weatherIcon.src = "images/mist.png";
-            }
-        }
+    const data = await response.json();
+    updateUI(data);
+  } catch {
+    showError("Network error 🌐");
+  }
 
-        async function getCurrentLocationWeather() {
-            if (!navigator.geolocation) return;
+  hideLoader();
+}
 
-            navigator.geolocation.getCurrentPosition(async (position) => {
-                const lat = position.coords.latitude;
-                const lon = position.coords.longitude;
+function updateUI(data) {
+  document.querySelector(
+    ".city"
+  ).innerHTML = `${data.name}, ${data.sys.country}`;
 
-                const response = await fetch(
-                    `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${lat}&lon=${lon}&appid=${apiKey}`
-                );
+  animateNumber(
+    document.querySelector(".temp"),
+    0,
+    Math.round(data.main.temp),
+    "°C"
+  );
 
-                const data = await response.json();
-                updateUI(data);
-            });
-        }
+  animateNumber(
+    document.querySelector(".feels"),
+    0,
+    Math.round(data.main.feels_like),
+    "°C"
+  );
 
-        searchBtn.addEventListener("click", () => {
-            checkWeather(searchBox.value);
-        });
+  document.querySelector(".description").innerHTML =
+    data.weather[0].description;
 
-        searchBox.addEventListener("keyup", (e) => {
-            if (e.key === "Enter") {
-                checkWeather(searchBox.value);
-            }
-        });
+  animateNumber(
+    document.querySelector(".humidity"),
+    0,
+    data.main.humidity,
+    "%"
+  );
 
-        getCurrentLocationWeather();
+  animateNumber(
+    document.querySelector(".wind"),
+    0,
+    Math.round(data.wind.speed),
+    " km/h"
+  );
+
+  document.querySelector(".minmax").innerHTML =
+    Math.round(data.main.temp_min) +
+    "°C / " +
+    Math.round(data.main.temp_max) +
+    "°C";
+
+  document.querySelector(".pressure").innerHTML = data.main.pressure + " hPa";
+
+  document.querySelector(".visibility").innerHTML =
+    (data.visibility / 1000).toFixed(1) + " km";
+
+  document.querySelector(".sunrise").innerHTML = new Date(
+    data.sys.sunrise * 1000
+  ).toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  document.querySelector(".sunset").innerHTML = new Date(
+    data.sys.sunset * 1000
+  ).toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  setWeatherIcon(data.weather[0].main);
+
+  weatherBox.style.display = "block";
+  errorBox.style.display = "none";
+}
+
+function setWeatherIcon(condition) {
+  const icons = {
+    Clouds: "clouds.png",
+    Clear: "clear.png",
+    Rain: "rain.png",
+    Drizzle: "drizzle.png",
+    Mist: "mist.png",
+    Snow: "snow.png",
+  };
+
+  weatherIcon.src = `images/${icons[condition] || "clear.png"}`;
+}
+
+function handleError(code) {
+  let msg = "Something went wrong 😕";
+
+  if (code === 404) msg = "City not found 🏙️";
+  if (code === 401) msg = "Invalid API key 🔑";
+  if (code === 429) msg = "Too many requests 🚦";
+
+  showError(msg);
+}
+
+function showError(message) {
+  errorBox.style.display = "block";
+  errorBox.innerText = message;
+  weatherBox.style.display = "none";
+}
+
+searchBtn.addEventListener("click", () => {
+  checkWeather(searchBox.value);
+});
+
+searchBox.addEventListener("keyup", (e) => {
+  if (e.key === "Enter") {
+    checkWeather(searchBox.value);
+  }
+});
+
+navigator.geolocation.getCurrentPosition(
+  (position) => {
+    const { latitude, longitude } = position.coords;
+
+    showLoader();
+
+    fetch(
+      `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${latitude}&lon=${longitude}&appid=${apiKey}`
+    )
+      .then((res) => res.json())
+      .then((data) => updateUI(data))
+      .finally(hideLoader);
+  },
+  () => {
+    console.log("Location permission denied");
+  }
+);
+
+window.addEventListener("offline", () => {
+  showError("You are offline ⚠️");
+});
