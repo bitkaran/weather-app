@@ -61,8 +61,8 @@ The goal of this project was not just to fetch weather data, but to focus on:
 ## 📸 Screenshots
 
 <p align="center">
-  <img src="screenshots/dark-theme.png" alt="Dark Mode" width="48%" />
-  <img src="screenshots/light-theme.png" alt="Light Mode" width="48%" />
+  <img src="screenshots/dark-mode.png" alt="Dark Mode" width="48%" />
+  <img src="screenshots/light-mode.png" alt="Light Mode" width="48%" />
 </p>
 
 ---
