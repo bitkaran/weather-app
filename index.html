@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Weather App</title>
-    <link rel="stylesheet" href="style.css?v=569656">
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -16,7 +16,7 @@
         <div class="search">
             <input type="text" placeholder="Enter city name" spellcheck="false">
             <button>
-                <img src="images/search.png">
+                <img src="images/search.png" style="width: 25px;">
             </button>
         </div>
 
@@ -25,15 +25,19 @@
         </div>
 
         <div class="weather">
-            <img src="images/rain.png" class="weather-icon">
-            <h1 class="temp">22°C</h1>
-            <h2 class="city">New York</h2>
+            <img src="images/clear.png" class="weather-icon">
+
+            <h1 class="temp">--°C</h1>
+            <p class="feels-text">Feels like <span class="feels">--°C</span></p>
+
+            <h2 class="city">City</h2>
+            <p class="description">---</p>
 
             <div class="details">
                 <div class="col">
                     <img src="images/humidity.png">
                     <div>
-                        <p class="humidity">50%</p>
+                        <p class="humidity">--%</p>
                         <p>Humidity</p>
                     </div>
                 </div>
@@ -41,24 +45,39 @@
                 <div class="col">
                     <img src="images/wind.png">
                     <div>
-                        <p class="wind">15 km/h</p>
-                        <p>Wind Speed</p>
+                        <p class="wind">-- km/h</p>
+                        <p>Wind</p>
                     </div>
+                </div>
+            </div>
+
+            <!-- EXTRA DETAILS -->
+            <div class="extra-details">
+                <div class="row">
+                    <span>Min / Max</span>
+                    <span class="minmax">-- / --</span>
+                </div>
+                <div class="row">
+                    <span>Pressure</span>
+                    <span class="pressure">-- hPa</span>
+                </div>
+                <div class="row">
+                    <span>Visibility</span>
+                    <span class="visibility">-- km</span>
+                </div>
+                <div class="row">
+                    <span>Sunrise</span>
+                    <span class="sunrise">--</span>
+                </div>
+                <div class="row">
+                    <span>Sunset</span>
+                    <span class="sunset">--</span>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="script.js?v=5"></script>
-
+    <script src="script.js"></script>
 </body>
 
-
 </html>
-
-
-
-
-
-
-
